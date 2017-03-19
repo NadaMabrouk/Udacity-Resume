@@ -34,7 +34,7 @@ var work = {
 var education = {
     "schools": [{
         "name": "Faculty of Computers and Information, Cairo University",
-        "website": "www.fci.cu.edu.eg",
+        "url": "www.fci.cu.edu.eg",
         "location": "5 Ahmed Zewail, Ad Doqi, Giza Governorate 12613, Egypt",
         "degree": "Bachelor Degree",
         "dates": "2008-2012",
@@ -65,12 +65,12 @@ var footerInfo = {
 	"github":"http://github.com/NadaMabrouk"
 };
 
-var formattedRole = HTMLheaderRole.replace("%data%", bio.role);
-$("#header").prepend(formattedRole);
-var formattedName = HTMLheaderName.replace("%data%", bio.name);
-$("#header").prepend(formattedName);
+
+
 
 bio.display = function() {
+    $("#header").prepend(HTMLheaderRole.replace("%data%", bio.role));
+    $("#header").prepend(HTMLheaderName.replace("%data%", bio.name));
     $("#topContacts").append(HTMLmobile.replace("%data%", bio.contacts.mobile));
     $("#topContacts").append(HTMLemail.replace("%data%", bio.contacts.email));
     $("#topContacts").append(HTMLgithub.replace("%data%", bio.contacts.github));
@@ -104,7 +104,7 @@ projects.display = function() {
 education.display = function() {
     $("#education").append(HTMLschoolStart);
     education.schools.forEach(function(element) {
-        $(".education-entry:last").append(HTMLschoolName.replace("%data%", element.name).replace("%url%", element.website));
+        $(".education-entry:last").append(HTMLschoolName.replace("%data%", element.name).replace("%url%", element.url));
         $(".education-entry:last").append(HTMLschoolDegreeAndDates.replace("%data%", element.degree).replace("%date%", element.dates));
         if (element.majors.length > 1) {
             var majors = element.majors.join();
@@ -141,7 +141,7 @@ footerInfo.display = function () {
 	$('#footerContacts').append(HTMLfooterCodepen.replace("%data%",footerInfo.codepen));
 	$('#footerContacts').append(HTMLfooterLinkedin.replace("%data%",footerInfo.linkedin));
 	$('#footerContacts').append(HTMLfooterGithub.replace("%data%",footerInfo.github));	
-}
+};
 
 bio.display();
 work.display();
